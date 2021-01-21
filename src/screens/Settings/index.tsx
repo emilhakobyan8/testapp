@@ -41,12 +41,12 @@ export const Settings = () => {
             ]}
             activeOpacity={0.7}
             onPress={onChangeTheme(key)}>
-            <Text style={styles.regularText}>{t && t(key)}</Text>
+            <Text style={styles.regularText}>{t?.(key)}</Text>
           </TouchableOpacity>
         ))}
       </View>
       <View style={styles.languageSelect}>
-        <Text style={styles.regularText}>{t && t('language')}</Text>
+        <Text style={styles.regularText}>{t?.('language')}</Text>
         <PickerView defaultValue="english" onChange={changeLocale} />
       </View>
       {isAuthorized && (
@@ -54,7 +54,7 @@ export const Settings = () => {
           style={styles.signOutButton}
           activeOpacity={0.7}
           onPress={signOut}>
-          <Text style={styles.signOutText}>{t && t('signOut')}</Text>
+          <Text style={styles.signOutText}>{t?.('signOut')}</Text>
         </TouchableOpacity>
       )}
     </View>

@@ -19,12 +19,12 @@ export const AuthScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.welcomeText}>{t && t('welcome')}</Text>
+      <Text style={styles.welcomeText}>{t?.('welcome')}</Text>
       <TouchableOpacity
         onPress={authorize}
         activeOpacity={0.7}
         style={styles.authorizeButton}>
-        <Text style={styles.signInButtonLabel}>{t && t('authorize')}</Text>
+        <Text style={styles.signInButtonLabel}>{t?.('authorize')}</Text>
       </TouchableOpacity>
     </View>
   );

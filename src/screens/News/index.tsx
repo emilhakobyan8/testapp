@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {FlatList, Text, View} from 'react-native';
 import moment from 'moment';
 
 import AppContext from '@/context/AppContext';
@@ -31,30 +31,24 @@ export const NewsScreen = () => {
     fetchNews();
   }, [fetchNews]);
 
-  const renderNewsList = useMemo(
-    () =>
-      news
-        ? news.map((item) => (
+  return (
+    <>
+      <View style={styles.header}>
+        <Text style={styles.screenTitle}>{t?.('news')}</Text>
+      </View>
+      <View style={styles.contentContainer}>
+        <FlatList
+          data={news}
+          renderItem={({item}) => (
             <NewsCard
-              key={item.id}
               title={item.title}
               date={parseDate(item.published)}
               image={item.image}
             />
-          ))
-        : null,
-    [news],
-  );
-
-  return (
-    <>
-      <View style={styles.header}>
-        <Text style={styles.screenTitle}>{t && t('news')}</Text>
-      </View>
-      <View style={styles.contentContainer}>
-        <ScrollView contentContainerStyle={styles.scrollView}>
-          {renderNewsList}
-        </ScrollView>
+          )}
+          keyExtractor={(item) => item.id}
+          style={styles.scrollView}
+        />
       </View>
     </>
   );

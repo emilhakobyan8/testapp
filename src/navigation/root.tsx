@@ -17,6 +17,7 @@ import {
 import AppContext from '@/context/AppContext';
 import Icon from '@/components/Icon';
 import LocalizationContext from '@/context/LocalizationContext';
+import routes from '@/constants/routes';
 
 export type RootParamList = {
   mainStack: undefined;
@@ -66,21 +67,21 @@ const renderAuthorizedScreens = (
   return (
     <>
       <Tab.Screen
-        name="News"
+        name={routes.news}
         component={NewsScreen}
         options={{
           tabBarLabel: t('news'),
         }}
       />
       <Tab.Screen
-        name="Map"
+        name={routes.map}
         component={MapScreen}
         options={{
           tabBarLabel: t('map'),
         }}
       />
       <Tab.Screen
-        name="Camera"
+        name={routes.camera}
         component={CameraScreen}
         options={{
           tabBarLabel: t('camera'),
@@ -94,7 +95,7 @@ const renderUnauthorizedScreens = (
   t: (scope: Scope, options?: TranslateOptions) => string,
 ) => (
   <Tab.Screen
-    name="Auth"
+    name={routes.auth}
     component={AuthScreen}
     options={{
       tabBarLabel: t('auth'),
@@ -108,7 +109,7 @@ const RootStack = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName="Auth"
+      initialRouteName={routes.auth}
       tabBarOptions={{
         activeTintColor: appTheme?.activeTintColor,
         inactiveTintColor: appTheme?.inactiveTintColor,
@@ -130,10 +131,10 @@ const RootStack = () => {
       {!isAuthorized && renderUnauthorizedScreens(t)}
       {isAuthorized && renderAuthorizedScreens(t)}
       <Tab.Screen
-        name="Settings"
+        name={routes.settings}
         component={Settings}
         options={{
-          tabBarLabel: t('settings'),
+          tabBarLabel: t?.('settings'),
         }}
       />
     </Tab.Navigator>

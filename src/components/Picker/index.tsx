@@ -55,16 +55,16 @@ export const PickerView: React.FC<IPickerView> = ({onChange}) => {
   return (
     <>
       <TouchableOpacity style={styles.openButton} onPress={openModal}>
-        <Text style={styles.textStyle}>{t && t(languagesMapping[locale])}</Text>
+        <Text style={styles.textStyle}>{t?.(languagesMapping[locale])}</Text>
       </TouchableOpacity>
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.centeredView}>
           <View style={styles.header}>
             <Text onPress={closeModal} style={styles.textStyle}>
-              {t && t('cancel')}
+              {t?.('cancel')}
             </Text>
             <Text onPress={saveAndCloseModal} style={styles.textStyle}>
-              {t && t('done')}
+              {t?.('done')}
             </Text>
           </View>
           <View style={styles.modalView}>
@@ -106,7 +106,7 @@ const OptionsList: React.FC<IOptionsList> = ({list, onChange, selected}) => {
             style={styles.listItem}
             onPress={onChange(locale)}
             activeOpacity={0.8}>
-            <Text style={styles.textStyle}>{t && t(label)}</Text>
+            <Text style={styles.textStyle}>{t?.(label)}</Text>
             {isSelected && (
               <Icon style={styles.tickIcon} source={appTheme?.tickIcon} />
             )}
